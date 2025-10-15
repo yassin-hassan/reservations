@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Artist</title>
+</head>
+<body>
+<h1>Add New Artist</h1>
+
+<form th:action="@{/artists}" th:object="${artist}" method="post">
+    <div>
+        <label>First Name:</label>
+        <input type="text" th:field="*{firstname}" required/>
+    </div>
+
+    <div>
+        <label>Last Name:</label>
+        <input type="text" th:field="*{lastname}" required/>
+    </div>
+
+    <div>
+        <label>Agency:</label>
+        <select th:field="*{agency}" required>
+            <option value="">-- Select Agency --</option>
+            <option th:each="agency : ${agencies}"
+                    th:value="${agency.id}"
+                    th:text="${agency.name}">
+                Agency Name
+            </option>
+        </select>
+    </div>
+
+    <br/>
+    <button type="submit">Save Artist</button>
+    <a href="/artists">Cancel</a>
+</form>
+</body>
+</html>
